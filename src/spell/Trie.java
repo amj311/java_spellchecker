@@ -2,6 +2,7 @@ package spell;
 
 public class Trie implements ITrie {
     private TrieNode root = new TrieNode();
+    private int wordCount = 0;
     private int hashCode = 0;
     @Override
     public int hashCode() {
@@ -18,17 +19,19 @@ public class Trie implements ITrie {
             wordHash = wordHash*31 + wordAndCnt.charAt(i);
         }
         hashCode += wordHash;
+
+        if (cnt == 1) wordCount++;
     }
 
 
     @Override
-    public INode find(String word) {
+    public TrieNode find(String word) {
         return root.find(word, 0);
     }
 
     @Override
     public int getWordCount() {
-        return root.getWordCount();
+        return wordCount ;
     }
 
     @Override
